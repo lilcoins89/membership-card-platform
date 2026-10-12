@@ -4,7 +4,7 @@
 Cardly is a membership-card creation and fulfillment platform for organizations. The first slice delivers a polished public landing page and a working operations console with dashboard, member management, application tracking, a visual card designer, and order/shipping visibility. The backend foundation keeps organization accounts, membership records, card designs, generated card assets, applications, and orders ready for managed database persistence and future printer/courier/payment integrations.
 
 ## Implementation approach
-- Keep the managed React/Express/tRPC/Drizzle starter and use the existing Manus OAuth/session foundation for account access.
+- Keep the managed React/Express/tRPC/Drizzle starter and expose Cardly’s domain API as public procedures without application login or token authentication.
 - Add Drizzle tables for organizations, members, card designs, applications, cards, and fulfillment orders with organization-scoped ownership fields.
 - Add tRPC procedures for dashboard summaries, members, applications, card designs, and orders. The UI uses a clear demo dataset for the first product pass and is structured so procedures can replace the demo source without changing the screens.
 - Build four responsive routes: `/` landing page, `/dashboard` operations overview, `/members` searchable member management, and `/designer` live card designer.
