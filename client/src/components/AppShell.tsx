@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Bell, ChevronDown, LayoutDashboard, LogOut, Menu, Palette, Plus, Settings, Users, X } from "lucide-react";
+import { Bell, ChevronDown, LayoutDashboard, LogOut, Menu, Palette, Plus, RefreshCw, Settings, Users, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -42,7 +42,8 @@ export default function AppShell({ children, title, eyebrow = "Workspace", actio
             return <Link key={item.href} href={item.href} onClick={() => navigate(item.href)} className={`nav-item ${active ? "active" : ""}`}><Icon size={17} /><span>{item.label}</span>{active && <i />} </Link>;
           })}
           <span className="nav-label nav-label-spaced">Fulfillment</span>
-          <button className="nav-item nav-item-muted" onClick={() => toast.info("Orders workspace is coming next in the fulfillment rollout.")}><span className="nav-dot dot-coral" /><span>Orders & shipping</span><em>Soon</em></button>
+          <Link href="/renewals" onClick={() => navigate("/renewals")} className={`nav-item nav-item-muted ${location === "/renewals" ? "active" : ""}`}><RefreshCw size={17} /><span>Renewals</span></Link>
+          <Link href="/orders" onClick={() => navigate("/orders")} className={`nav-item nav-item-muted ${location === "/orders" ? "active" : ""}`}><span className="nav-dot dot-coral" /><span>Orders & shipping</span></Link>
           <button className="nav-item nav-item-muted" onClick={() => toast.info("Applications are connected to the review queue in the dashboard.")}><span className="nav-dot dot-lime" /><span>Applications</span></button>
         </nav>
         <div className="sidebar-footer">
