@@ -1,25 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { ArrowRight, Check, ChevronRight, CircleCheck, Layers3, PackageCheck, Sparkles, UsersRound } from "lucide-react";
+import { Link } from "wouter";
+import CardPreview from "@/components/CardPreview";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Workflow, Frontend Best Practices, Design Guide and Common Pitfalls
- */
+const features = [
+  { icon: Layers3, number: "01", title: "Design once.\nShip beautifully.", copy: "Bring your brand into every detail — from member photo to the last pixel of your QR code." },
+  { icon: UsersRound, number: "02", title: "One home for\nevery member.", copy: "Applications, renewals, member records, and card history stay in one calm operating view." },
+  { icon: PackageCheck, number: "03", title: "Know what is\non its way.", copy: "Track production, delivery addresses, and shipment progress before members have to ask." },
+];
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
+  return <div className="marketing-page">
+    <header className="marketing-nav"><Link href="/" className="brand-lockup"><span className="brand-mark"><span /></span><span className="brand-wordmark">CARDLY</span></Link><nav><a href="#how-it-works">How it works</a><a href="#capabilities">Capabilities</a><a href="#shipping">Fulfillment</a></nav><div className="marketing-actions"><Link href="/dashboard" className="text-link">Sign in</Link><Link href="/dashboard" className="button button-dark button-small">Open workspace <ArrowRight size={15} /></Link></div></header>
+    <main>
+      <section className="hero-section"><div className="hero-copy"><span className="eyebrow"><i className="signal-dot" /> MEMBERSHIP, MADE PHYSICAL</span><h1>Make every<br /><em>member</em> feel<br />expected.</h1><p className="hero-lede">Cardly gives growing organizations a polished way to create, manage, and ship membership cards — without the operational maze.</p><div className="hero-actions"><Link href="/dashboard" className="button button-dark">Build your first card <ArrowRight size={16} /></Link><a href="#how-it-works" className="button button-quiet">See how it works <ChevronRight size={16} /></a></div><div className="hero-proof"><div className="proof-avatars"><span>JM</span><span>SA</span><span>LT</span><span>+</span></div><p><strong>2,480</strong> active members<br /><span>already feeling the difference</span></p></div></div><div className="hero-visual"><div className="visual-note note-top"><span className="note-line" />QR-ready by default</div><div className="card-stage"><div className="stage-glow" /><CardPreview name="Maya Chen" memberId="NSC-2048" expiry="09 / 26" /><div className="stage-caption"><span>01 / THE MEMBER CARD</span><span>Front · v1.0</span></div></div><div className="visual-note note-bottom"><span className="note-line" />Print-ready in one click</div></div></section>
+      <section className="logo-strip"><span>BUILT FOR CLUBS, COMMUNITIES &amp; CAUSES</span><div><strong>northstar</strong><strong>Kinship</strong><strong>PACT / 24</strong><strong>THE MUSEUM</strong></div></section>
+      <section id="how-it-works" className="feature-section"><div className="section-intro"><span className="eyebrow">THE CARDLY METHOD</span><h2>From “we should”<br /><em>to “it’s on its way.”</em></h2><p>A better member experience starts behind the scenes. Cardly keeps the handoffs clear, the details consistent, and the work moving.</p></div><div className="feature-list">{features.map(feature => { const Icon = feature.icon; return <div className="feature-row" key={feature.number}><span className="feature-number">{feature.number}</span><span className="feature-icon"><Icon size={20} /></span><h3>{feature.title.split("\n").map((line, index) => <span key={line}>{line}{index === 0 && <br />}</span>)}</h3><p>{feature.copy}</p><ArrowRight className="feature-arrow" size={19} /></div> })}</div></section>
+      <section id="capabilities" className="capability-section"><div className="capability-copy"><span className="eyebrow">THE OPERATIONS LAYER</span><h2>Your brand in the front.<br /><em>Clarity in the back.</em></h2><p>Cardly was designed for the people who make membership feel effortless — even when there are hundreds of small details to hold together.</p><ul><li><CircleCheck size={16} />A live card designer for every brand detail</li><li><CircleCheck size={16} />Application review and renewal signals</li><li><CircleCheck size={16} />Production and shipping status in one view</li></ul><Link href="/dashboard" className="button button-outline">Explore the workspace <ArrowRight size={16} /></Link></div><div className="capability-panel"><div className="panel-header"><span><i className="signal-dot" /> LIVE WORKSPACE</span><span>Today · 09:41</span></div><div className="mini-metric-grid"><div><span>MEMBERS</span><strong>2,480</strong><small><b>+12.4%</b> this month</small></div><div><span>IN PRODUCTION</span><strong>28</strong><small>Cards being made</small></div><div><span>RENEWALS DUE</span><strong>64</strong><small><b className="coral-text">11 urgent</b> this week</small></div></div><div className="panel-queue"><div className="queue-heading"><span>RECENT ACTIVITY</span><span>View all <ChevronRight size={14} /></span></div><div className="queue-item"><span className="queue-icon queue-green"><Check size={14} /></span><div><strong>Card order #1048 shipped</strong><small>Northstar Club · 4 min ago</small></div><span className="status-label status-shipped">Shipped</span></div><div className="queue-item"><span className="queue-icon queue-lime"><Sparkles size={14} /></span><div><strong>12 new applications ready</strong><small>Membership queue · 18 min ago</small></div><span className="status-label status-review">Review</span></div><div className="queue-item"><span className="queue-icon queue-coral"><CircleCheck size={14} /></span><div><strong>Renewals need attention</strong><small>11 memberships · Today</small></div><span className="status-label status-action">Action</span></div></div></div></section>
+      <section id="shipping" className="cta-section"><div><span className="eyebrow">READY WHEN YOU ARE</span><h2>Put a better card<br /><em>in their hands.</em></h2></div><div><p>Start with one beautiful template. Grow into a complete membership operation.</p><Link href="/dashboard" className="button button-lime">Open Cardly <ArrowRight size={16} /></Link></div></section>
+    </main>
+    <footer className="marketing-footer"><Link href="/" className="brand-lockup"><span className="brand-mark"><span /></span><span className="brand-wordmark">CARDLY</span></Link><span>Membership infrastructure, made human.</span><span>© 2025 Cardly, Inc.</span></footer>
+  </div>;
 }

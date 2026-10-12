@@ -1,14 +1,25 @@
 # Cardly Membership Platform
 
-React / Express / tRPC / Drizzle starter, adapted from the Sandbox web-db-user template.
+Cardly is a membership-card creation and fulfillment workspace for organizations that want a polished member experience from application to delivery.
 
-- `pnpm dev`: development server; honors `PORT` (default 3000).
-- `pnpm build` / `pnpm start`: build and serve `dist/index.js` and `dist/public/`.
-- `pnpm db:migrate`: apply checked-in migrations. `pnpm db:push`: generate and apply new schema changes.
-- `pnpm check` / `pnpm test`: types and application tests.
+## Included in this first product slice
 
-Start with the Webdev skill's default-template guide. Platform login, storage, payments and service contracts live in its shared references; read the relevant capability before extending its helper.
+- Public landing page at `/` with the Cardly product story and workflow.
+- Operations overview at `/dashboard` with member, application, production, renewal, and shipment signals.
+- Searchable member management at `/members` with status filters and renewal-ready records.
+- Live card designer at `/designer` with member name, member ID, expiry, brand color, logo state, and QR preview controls.
+- Drizzle models and an additive migration for organizations, members, designs, applications, cards, and fulfillment orders.
+- Typed tRPC endpoints for dashboard, member, application, card generation, and order workflows.
+- Stable route manifest at `client/public/manus-routes.json`.
 
-`server/_core/publicConfig.ts` exposes only named public runtime values. Private keys stay server-side. The platform serves managed `/manus-storage/` assets; the application does not register a second proxy.
+## Run locally
 
-Platform configuration is readable and editable through `webdev.config`. Default settings are initial values, not enforced constraints. The agent may modify the files, commands and configuration or follow the flexible guide for another stack.
+```bash
+pnpm dev
+```
+
+The managed server listens on the configured `PORT` (3000 by default). Typecheck with `pnpm check` and build with `pnpm build`.
+
+## Production connections
+
+The data model includes explicit fields for stable card assets, printer providers, courier providers, tracking numbers, shipping addresses, and production statuses. Those are integration points for the next phase; no external payment, printer, or courier account is assumed or connected in this initial build.
