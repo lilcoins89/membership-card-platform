@@ -1,5 +1,3 @@
-import { QrCode, ShieldCheck } from "lucide-react";
-
 type CardPreviewProps = {
   name: string;
   memberId: string;
@@ -7,12 +5,13 @@ type CardPreviewProps = {
   organization?: string;
   tier?: string;
   accent?: string;
+  variant?: "midnight" | "clay" | "cloud";
 };
 
-export default function CardPreview({ name, memberId, expiry, organization = "NORTHSTAR CLUB", tier = "FULL MEMBER", accent = "#c7f36b" }: CardPreviewProps) {
+export default function CardPreview({ name, memberId, expiry, organization = "NORTHSTAR CLUB", tier = "FULL MEMBER", accent = "#c7f36b", variant = "midnight" }: CardPreviewProps) {
   const qrValue = encodeURIComponent(`https://cardly.example/member/${memberId}`);
   return (
-    <div className="membership-card" style={{ "--card-accent": accent } as React.CSSProperties}>
+    <div className={`membership-card ${variant}`} style={{ "--card-accent": accent } as React.CSSProperties}>
       <div className="card-noise" />
       <div className="card-topline"><span className="card-brand"><span className="mini-mark"><span /></span>{organization}</span><span className="card-edition">MEMBERSHIP / 2025</span></div>
       <div className="card-mid"><div className="card-chip"><span /><span /><span /><span /></div><span className="card-signal">N° 001 / ACTIVE</span></div>
