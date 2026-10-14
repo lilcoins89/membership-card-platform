@@ -10,6 +10,7 @@ Cardly is a membership-card creation and fulfillment platform for organizations.
 - Build responsive routes for `/` landing page, `/dashboard` operations overview, `/members` searchable member management, `/applications` review queue, `/renewals` renewal operations, `/orders` fulfillment visibility, and `/designer` live card designer.
 - Add `public/manus-routes.json` for the complete page route manifest.
 - Keep printing, payments, and courier systems integration-ready through explicit status fields and adapter notes rather than pretending external integrations are connected.
+- Treat fulfillment addresses as U.S.-wide by supporting all states, D.C., and territories with state/ZIP validation in both the interface and typed backend procedure.
 
 ## Design direction
 - **Design movement:** editorial SaaS with a warm Swiss-modernist backbone: precise grids, oversized type, and tactile paper-like surfaces.

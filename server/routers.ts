@@ -2,6 +2,16 @@ import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 
 const organizationIdInput = z.object({ organizationId: z.number().int().positive() });
+const usStateCodes = new Set("AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY AS GU MP PR VI".split(" "));
+const usShippingAddress = z.object({
+  recipient: z.string().trim().min(1).max(160),
+  line1: z.string().trim().min(1).max(160),
+  line2: z.string().trim().max(160).optional(),
+  city: z.string().trim().min(1).max(80),
+  state: z.string().trim().length(2).toUpperCase().refine((value) => usStateCodes.has(value), "Unsupported U.S. state or territory."),
+  postal: z.string().trim().regex(/^\d{5}(?:-\d{4})?$/),
+  country: z.literal("US").default("US"),
+});
 
 export const appRouter = router({
   dashboard: router({
@@ -28,7 +38,7 @@ export const appRouter = router({
   }),
   orders: router({
     list: publicProcedure.input(organizationIdInput).query(({ input }) => ({ organizationId: input.organizationId, items: [] })),
-    create: publicProcedure.input(z.object({ organizationId: z.number().int().positive(), memberIds: z.array(z.number().int().positive()).min(1), shippingAddress: z.record(z.string(), z.string()) })).mutation(({ input }) => ({ created: true, orderNumber: `ORD-${Date.now().toString().slice(-6)}`, status: "queued" as const, ...input })),
+    create: publicProcedure.input(z.object({ organizationId: z.number().int().positive(), memberIds: z.array(z.number().int().positive()).min(1), shippingAddress: usShippingAddress })).mutation(({ input }) => ({ created: true, orderNumber: `ORD-${Date.now().toString().slice(-6)}`, status: "queued" as const, ...input })),
     track: publicProcedure.input(z.object({ organizationId: z.number().int().positive(), orderId: z.number().int().positive() })).query(({ input }) => ({ organizationId: input.organizationId, orderId: input.orderId, status: "queued" as const, trackingNumber: null, courierProvider: null })),
   }),
 });
