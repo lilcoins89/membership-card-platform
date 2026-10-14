@@ -44,7 +44,7 @@ export default function AppShell({ children, title, eyebrow = "Workspace", actio
           <span className="nav-label nav-label-spaced">Fulfillment</span>
           <Link href="/renewals" onClick={() => navigate("/renewals")} className={`nav-item nav-item-muted ${location === "/renewals" ? "active" : ""}`}><RefreshCw size={17} /><span>Renewals</span></Link>
           <Link href="/orders" onClick={() => navigate("/orders")} className={`nav-item nav-item-muted ${location === "/orders" ? "active" : ""}`}><span className="nav-dot dot-coral" /><span>Orders & shipping</span></Link>
-          <button className="nav-item nav-item-muted" onClick={() => toast.info("Applications are connected to the review queue in the dashboard.")}><span className="nav-dot dot-lime" /><span>Applications</span></button>
+          <Link href="/applications" onClick={() => navigate("/applications")} className={`nav-item nav-item-muted ${location === "/applications" ? "active" : ""}`}><span className="nav-dot dot-lime" /><span>Applications</span></Link>
         </nav>
         <div className="sidebar-footer">
           <button className="nav-item nav-item-muted" onClick={() => toast.info("Settings will be available once your organization profile is connected.")}><Settings size={17} /><span>Settings</span></button>

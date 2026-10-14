@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import Dashboard from "@/pages/Dashboard";
 import Designer from "@/pages/Designer";
 import Home from "@/pages/Home";
+import Applications from "@/pages/Applications";
 import Members from "@/pages/Members";
 import Orders from "@/pages/Orders";
 import Renewals from "@/pages/Renewals";
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/members" component={Members} />
+      <Route path="/applications" component={Applications} />
       <Route path="/renewals" component={Renewals} />
       <Route path="/orders" component={Orders} />
       <Route path="/designer" component={Designer} />
